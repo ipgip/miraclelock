@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MiracleLock" Class="LockDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MiracleLock;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="miraclelock.Properties.Settings" SettingsPropertyName="MiracleLockConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Rooms" Member="Rooms">
+    <Type Name="Rooms">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Building" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Floor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Room" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HumanRoomNumber" Type="System.String" DbType="NChar(6)" CanBeNull="true" />
+      <Column Name="State" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Shape" Type="System.Xml.Linq.XElement" DbType="Xml" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Rooms_Cards" Member="Cards" ThisKey="Id" OtherKey="RoomId" Type="Cards" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cards" Member="Cards">
+    <Type Name="Cards">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Card" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="RoomId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ci" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Co" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Holder" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Rooms_Cards" Member="Rooms" ThisKey="RoomId" OtherKey="Id" Type="Rooms" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
